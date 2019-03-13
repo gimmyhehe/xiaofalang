@@ -346,6 +346,12 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  //antd-mobile的按需加载
+                  ["import", {
+                    style: 'css',  // 'less',
+                    libraryName: 'antd-mobile',
+                  },
+                  "antd-mobile"]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
