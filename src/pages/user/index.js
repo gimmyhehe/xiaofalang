@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../components/footer/footer'
+import Footer from '@/components/common/footer'
 export default class User extends React.Component{
   render(){
     return (
