@@ -15,8 +15,6 @@ export default class HomeHeader extends React.Component {
         <Carousel
           autoplay={true}
           infinite
-          beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-          afterChange={index => console.log('slide to', index)}
           style={{height:'100px',overflow:'hidden',borderRadius:'12px'}}
         >
           {this.state.data.map(val => (
