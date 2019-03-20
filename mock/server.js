@@ -1,5 +1,6 @@
 var Koa = require('koa')
 var Router = require('koa-router')
+const bodyparser = require('koa-bodyparser');
 
 var app = new Koa()
 var router = new Router()
@@ -10,7 +11,7 @@ var router = new Router()
 // router.get('/api', function *(next) {
 //     this.body = 'test data'
 // });
-
+app.use(bodyparser());
 router.get('/', function (ctx, next) {
     ctx.body = 'hello koa !'
   });
@@ -39,7 +40,27 @@ router.get('/api/homelist/:city/:page', function (ctx,next) {
     ctx.body = homeListData
 });
 
+router.post('/api/login', function (ctx,next) {
+    console.log('验证登录')
+    const params = ctx.request.body
+    const username = params['user_name']
+    const password = params.password
+    // 获取参数
+    console.log(params,username,password)
+    if(username==123&&password=='123'){
+        ctx.set('Authorization','testuser')
+        ctx.body = {
+            status: 0,
+            msg: 'ok'
+        }
+    }else{
+        ctx.body = {
+            status: 1,
+            msg: '登录出错'
+        }
+    }
 
+})
 
 // 开始服务并生成路由
 const port = 3101

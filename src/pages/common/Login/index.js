@@ -20,14 +20,18 @@ class Login extends React.Component {
     this.props.form.validateFields({ force: true }, (error) => {
       if (!error) {
         let params = this.props.form.getFieldsValue()
-        console.log(params);
-        login(params).then((res)=>{
+        let newP = {}
+        newP['user_name'] =params.username
+        newP['password'] =params.password
+        console.log(newP);
+        login(newP).then((res)=>{
           let data = res.data
-          if(data.status===0){
+          console.log(res)
+          if(data.status==0){
             this.props.history.push('/user')
             
           }else{
-            alert('提示', data.msg, [
+            alert('错误提示', data.msg, [
               { text: '确定', onPress: () => console.log('cancel') },
             ])
           }

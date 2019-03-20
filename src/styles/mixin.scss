@@ -1,0 +1,30 @@
+@mixin bis($url) { 
+	background-image: url($url);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+//正方形行内快元素
+@mixin squre($width){
+  width: $width;
+  height: $width;
+  display: inline-block;
+}
+//圆形图片
+@mixin cimg($r){
+  width: $r;
+  height: $r;
+  display: inline-block;
+  border-radius: 50%;
+}
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin flexB{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

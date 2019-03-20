@@ -1,11 +1,13 @@
 import React from 'react'
-import {Badge, List} from 'antd-mobile'
-
+import {Badge, List,Modal,Button,WhiteSpace} from 'antd-mobile'
+import { Link,withRouter } from 'react-router-dom'
+import { removeToken } from '@/utils/auth'
+import store from '@/store'
 import './style.less'
 import Footer from '@/components/common/footer'
 const Item = List.Item;
 const Brief = Item.Brief;
-export default class User extends React.Component{
+class User extends React.Component{
   constructor(props){
     super(props)
     this.state={
@@ -23,8 +25,26 @@ export default class User extends React.Component{
           text: `浏览记录`
         },
         
-      ]
+      ],
+      token:store.getState().userinfo.token
     }
+  }
+  handleJump(token,path){
+    if(token==null){
+      Modal.alert('请先登录')
+    }else{
+      this.props.history.push(path)
+    }
+  }
+  logout(){
+    Modal.alert('','确认要退出登录吗？',[
+      {text:'取消'},
+      {text:'确定',onPress:()=>{
+        removeToken()
+        store.dispatch({type:"LOGOUT",data:{token:null}})
+        this.setState({token:store.getState().userinfo.token})
+      }}
+    ])
   }
   render(){
     return (
@@ -34,6 +54,14 @@ export default class User extends React.Component{
           <span className='iconfont iconmeg'>
             <Badge text={77} overflowCount={9}></Badge>
           </span>
+          { !this.state.token ?
+          <div className='avatar'>
+            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
+            <div className='userinfo'>
+              <div className='name'><Link to='/login'>登录/注册</Link></div>
+              <div className='level'>LV0</div>
+            </div>
+          </div> :
           <div className='avatar'>
             <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
             <div className='userinfo'>
@@ -41,6 +69,7 @@ export default class User extends React.Component{
               <div className='level'>等级LV2</div>
             </div>
           </div>
+          }
         </div>
         <div className='menu'>
           <div className='item'>
@@ -49,11 +78,11 @@ export default class User extends React.Component{
           </div>
           <div className='item'>
             <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt=''/>
-            收藏
+            优惠券
           </div>
           <div className='item'>
             <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt=''/>
-            收藏
+            发表文章
           </div>
         </div>
         <List className='memu-list' style={{marginTop:'30px'}}>
@@ -61,42 +90,47 @@ export default class User extends React.Component{
             thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
             arrow="horizontal"
             onClick={() => {}}
-          >My wallet</Item>
+          >我的订单</Item>
           <Item
             thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
-            onClick={() => {}}
+            onClick={this.handleJump.bind(this,this.state.token,'/profile')}
             arrow="horizontal"
           >
-            My Cost Ratio
+           个人资料
           </Item>
           <Item
             thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
             arrow="horizontal"
             onClick={() => {}}
-          >My wallet</Item>
+          >我的文章</Item>
           <Item
             thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
             onClick={() => {}}
             arrow="horizontal"
           >
-            My Cost Ratio
+            会员中心
           </Item>
           <Item
             thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
             arrow="horizontal"
             onClick={() => {}}
-          >My wallet</Item>
+          >我的关注</Item>
           <Item
             thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
             onClick={() => {}}
             arrow="horizontal"
           >
-            My Cost Ratio
+            关于小发廊
           </Item>
         </List>
+        <WhiteSpace size='lg'/>
+        {
+         this.state.token  ? <Button type='primary' onClick={this.logout.bind(this)}>退出登录</Button> : ''
+        }
         <Footer></Footer>
       </div>
       
     )
   }
 }
+export default withRouter(User)

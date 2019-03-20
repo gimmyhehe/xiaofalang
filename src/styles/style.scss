@@ -1,0 +1,42 @@
+
+//全局的表单样式（只有border-bottom）
+.g-form-line{
+  width: 90%;
+  margin: 0 auto;
+  .am-list-body{
+    background-color: transparent;
+    &::before,&::after{
+      background-color: transparent!important;
+    }
+    .am-list-line{
+      border-bottom: #fff solid 1px !important;
+      &::after{
+        display: none!important;
+      }
+    }
+  }
+  .am-list-item{
+    background-color: transparent;
+    .am-input-label{
+       color: #fff;
+    }
+    .am-input-control input{
+      color: #fff;
+    }
+  }
+  .am-list-footer{
+    color: #fff;
+
+  }
+}
+.g-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+
+}
+.g-container{
+  background: #fff;
+  padding: 10px 20px 60px;
+}

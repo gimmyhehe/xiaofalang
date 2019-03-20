@@ -1,11 +1,12 @@
 import React from 'react'
 // import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
-import './style.less'
+import './style.scss'
 import { WhiteSpace } from 'antd-mobile'
 import Carousel from '@/components/Carousel/'
 import Classify from './subpages/Classify'
 import Hot from './subpages/Hot'
+import Footer from '@/components/common/footer'
 
 
 import HomeHeader from '@/components/HomeHeader'
@@ -22,7 +23,7 @@ class App extends React.Component {
             <div>
                 {
                 this.state.initDone ?
-                <div>
+                <div className='m-home' style={{paddingBottom:'50px'}}>
                     <HomeHeader cityName="广州"></HomeHeader>
                     <WhiteSpace size="lg"/>
                     <Carousel></Carousel>
@@ -30,6 +31,7 @@ class App extends React.Component {
                     <Classify/>
                     <WhiteSpace size="lg"/>
                     <Hot/>
+                    <Footer/>
                 </div>
                 :<div>加载中...</div>
                 }

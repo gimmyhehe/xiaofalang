@@ -1,5 +1,10 @@
 import axios from 'axios'
+import qs from 'qs'
+import store from '@/store'
+import { update } from '@/store/userinfo/action'
+import { setToken } from '@/utils/auth'
 import { Modal } from 'antd-mobile'
+const alert = Modal.alert
 const CancelToken = axios.CancelToken
 var cancel;
 var service=axios.create({
@@ -8,6 +13,7 @@ var service=axios.create({
 })
  //添加请求拦截器
  service.interceptors.request.use(function(config){
+     console.log('store',store.getState())
     // if(store.getters.token){
     //     config.headers['TOKEN']=getCookie('TOKEN')
     // }
@@ -37,12 +43,27 @@ service.interceptors.response.use(function(response){
   //     return response.data
   //   }
   // },
-    return response
+    const res = response
+    let token = res.headers.authorization
+    if (token) {
+        let userinfo = store.getState().userinfo
+        userinfo.token = token
+      // 如果 header 中存在 token，现在只从response更新token
+      store.dispatch(update(userinfo))
+      setToken({token})
+    }
+    // Token-Refresh-At: 1544499859
+    if (res.status !== 200) {
+        alert('response返回了错误信息')
+      return Promise.reject(new Error('error'))
+    } else {
+      return response
+    }
 },function(error){
     console.log('err'+error)
-    Modal.alert({
-        Message:error.message,
-    })
+    // Modal.alert({
+    //     Message:error.message,
+    // })
     return Promise.reject(error)
 }
 )
@@ -81,7 +102,10 @@ export  function post(url,param){
         service({
             method:'post',
             url,
-            data:param,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            data:qs.stringify(param),
             cancelToken:new CancelToken(c=>{
                 cancel=c
             })

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.less';
+import './styles/common.less';
+import './styles/style.scss';
 import * as serviceWorker from './serviceWorker';
 import { createHashHistory } from 'history';
 //redux相关配置

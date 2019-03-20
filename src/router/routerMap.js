@@ -1,10 +1,14 @@
 import React from 'react'
 import { HashRouter as Router, Route, Switch  } from "react-router-dom";
 
-import App from '../pages/home/index'
-import User from '../pages/user/index'
-import City from '../pages/City/index'
-import NotFound from '../pages/404'
+import App from '@/pages/home/index'
+import User from '@/pages/user/index'
+import Profile from '@/pages/user/profile'
+import City from '@/pages/City/index'
+import Login from '@/pages/common/Login'
+import Find from '@/pages/Find/index'
+import Register from '@/pages/common/Register'
+import NotFound from '@/pages/404'
 // import User from '../pages/User'
 // import Search from '../pages/Search'
 // import Detail from '../pages/Detail'
@@ -20,7 +24,11 @@ class RouterMap extends React.Component {
               <Switch>
                 <Route path='/' exact component={App}/>
                 <Route path='/user' exact component={User}/>
+                <Route path='/profile' exact component={Profile}/>
                 <Route path='/city' exact component={City}/>
+                <Route path='/find'  component={Find}/>
+                <Route path='/login'  component={Login}/>
+                <Route path='/register'  component={Register}/>
                 {/* <Route path='/city' exact component={City}/>
                 <Route path='/search/:category' exact component={Search}/> */}
                 {/* <Route path="/test1" exact render={(props) => {
