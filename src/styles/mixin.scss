@@ -28,3 +28,6 @@
   justify-content: space-between;
   align-items: center;
 }
+@mixin  shadowBottom($color:#ccc,$blur:10px) {
+  box-shadow: 1px 1px $blur $color;
+}

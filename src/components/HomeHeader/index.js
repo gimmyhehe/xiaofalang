@@ -6,7 +6,7 @@ import './style.scss'
 class HomeHeader extends React.Component {
     render() {
         return (
-            <div id="home-header" className="clear-fix">
+            <div id="home-header" className="clearfix">
                 <div className="home-header-left float-left" onClick={this.openCityPage.bind(this)}>
                     <span>{this.props.cityName}</span>
                     &nbsp;

@@ -1,3 +1,4 @@
+@import '@/styles/mixin.scss';
 #home-ad {
   background-color: #fff;
 
@@ -25,5 +26,12 @@
   h4{
     text-align: center;
     line-height: 36px;
+  }
+}
+.business-list{
+  padding:20px 0 ;
+  .item{
+    margin-top:20px;
+    @include shadowBottom;
   }
 }

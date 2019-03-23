@@ -29,6 +29,26 @@
 
   }
 }
+//其中grow-item为自适应的card样式
+.g-mycard{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .grow-item{
+    flex-grow: 1; 
+  }
+}
+.g-box{
+  background: #fff;
+  width: 100%;
+  margin-top: 20px;
+  .header{
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f1f1;
+  }
+}
 .g-footer{
   position: fixed;
   bottom: 0;

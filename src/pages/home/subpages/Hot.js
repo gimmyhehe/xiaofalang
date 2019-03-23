@@ -12,7 +12,7 @@ export default class Hot extends React.Component{
     return(
         <div id="home-ad">
             <h2>人气最高</h2>
-            <div className="ad-container clear-fix">
+            <div className="ad-container clearfix">
                 {this.state.data.map((item, index) => {
                     return <div key={index} className="ad-item float-left">
                         <a rel="noopener noreferrer" href={item.link} target="_blank">

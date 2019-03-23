@@ -5,6 +5,7 @@ import './style.scss'
 import { WhiteSpace } from 'antd-mobile'
 import Carousel from '@/components/Carousel/'
 import Classify from './subpages/Classify'
+import BusinessList from './BusinessList/'
 import Hot from './subpages/Hot'
 import Footer from '@/components/common/footer'
 
@@ -31,6 +32,7 @@ class App extends React.Component {
                     <Classify/>
                     <WhiteSpace size="lg"/>
                     <Hot/>
+                    <BusinessList/>
                     <Footer/>
                 </div>
                 :<div>加载中...</div>
