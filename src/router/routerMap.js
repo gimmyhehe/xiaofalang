@@ -1,9 +1,10 @@
 import React from 'react'
 import { HashRouter as Router, Route, Switch  } from "react-router-dom";
-
+import AnimatedRouter from 'react-animated-router'; //我们的AnimatedRouter组件
+import 'react-animated-router/animate.css'; //引入默认的动画样式定义
 import App from '@/pages/home/index'
-import User from '@/pages/user/index'
-import Profile from '@/pages/user/profile'
+import UserLayout from '@/pages/user/Layout'
+
 import City from '@/pages/City/index'
 import Login from '@/pages/common/Login'
 import Find from '@/pages/Find/index'
@@ -21,10 +22,9 @@ class RouterMap extends React.Component {
     render() {
         return (
             <Router>
-              <Switch>
+              <AnimatedRouter>
                 <Route path='/' exact component={App}/>
-                <Route path='/user' exact component={User}/>
-                <Route path='/profile' exact component={Profile}/>
+                <Route path='/user'  component={UserLayout}/>
                 <Route path='/city' exact component={City}/>
                 <Route path='/find'  component={Find}/>
                 <Route path='/login'  component={Login}/>
@@ -40,7 +40,7 @@ class RouterMap extends React.Component {
                         )
                     }} /> */}
                 <Route path='*' component={NotFound}/>
-              </Switch>  
+              </AnimatedRouter>  
             </Router>
         )
     }

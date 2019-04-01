@@ -22,10 +22,38 @@
       }
   }
 }
-.classify-box{
+.m-classify{
   h4{
     text-align: center;
     line-height: 36px;
+  }
+  .am-flexbox.am-flexbox-align-center{
+    border-radius: 10px;
+  }
+  .am-flexbox-item.item{
+    height: 110px;
+    flex-grow: 1;
+    text-align: center;
+    img{
+      max-width: 90%;
+      max-height: 60px;
+    }
+  }
+  .am-flexbox-item.item-2{
+    flex-grow: 2;
+
+  }
+  #item1{
+    background: linear-gradient(-135deg,rgba(193,40,214,.1) 25%,rgba(19,255,253,.1) 50%,rgba(255,255,255,0) 0) 5rem no-repeat,linear-gradient(90deg,rgba(197,20,155,.08) 0,rgba(255,112,29,.08) 99%);
+  }
+  #item2{
+    background: linear-gradient(-135deg,rgba(255,237,112,.08) 25%,rgba(255,121,215,.08) 50%,rgba(255,255,255,0) 0) .1rem no-repeat,linear-gradient(90deg,rgba(81,184,253,.14) 0,rgba(227,51,255,.14) 92%);
+  }
+  #item3{
+    background-image: linear-gradient(90deg, rgba(21, 255, 237, 0.08) 0%, rgba(147, 31, 255, 0.08) 97%);
+  }
+  #item4{
+    background-image: linear-gradient(270deg, rgba(255, 111, 15, 0.06) 0%, rgba(255, 46, 119, 0.06) 100%);
   }
 }
 .business-list{

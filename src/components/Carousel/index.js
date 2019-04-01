@@ -5,7 +5,7 @@ export default class HomeHeader extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
+      data: ['banner1', 'banner2', 'banner3'],
       imgHeight: 176,
     }
   }
@@ -24,7 +24,7 @@ export default class HomeHeader extends React.Component {
               style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
             >
               <img
-                src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                src={`/static/imgs/index/${val}.png`}
                 alt=""
                 style={{ width: '100%', verticalAlign: 'top' }}
                 onLoad={() => {

@@ -1,6 +1,7 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter,Link } from 'react-router-dom'
 import { Icon } from 'antd-mobile'
+import store from '@/store'
 import './style.scss'
 
 class HomeHeader extends React.Component {
@@ -14,10 +15,26 @@ class HomeHeader extends React.Component {
                 </div>
                 <div className="home-header-middle">
                     <div className="search-container">
-                        <i className="icon-search"></i>
-                        <input type="text" placeholder="请输入关键字"/>
+                        <i className="iconfont iconsearch" style={{display:'inline-block'}}></i>
+                        <input type="text" placeholder="请输入关键字" style={{display:'inline-block',maxWidth:"100px"}} />
                     </div>
                 </div>
+                {
+                    store.getState().userinfo.token?
+                    <div className='user-info'>
+                        <Link to="user">
+                            <img src="/static/imgs/default.png" alt="" />
+                            gimmy
+                        </Link>
+                    </div>
+                    :
+                    <div className='user-info'>
+                        <Link to="login">
+                            <img src="/static/imgs/default.png" alt="" />
+                            登录
+                        </Link>
+                    </div>
+                }
             </div>
         )
     }

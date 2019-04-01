@@ -1,6 +1,9 @@
 import React from 'react'
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as userInfoActionsFromOtherFile from '@/store/userinfo/action-type'
+import { CITYNAME } from '@/config/localStoreKey'
+import localStore from '@/utils/localStore'
 import './style.scss'
 import { WhiteSpace } from 'antd-mobile'
 import Carousel from '@/components/Carousel/'
@@ -25,7 +28,7 @@ class App extends React.Component {
                 {
                 this.state.initDone ?
                 <div className='m-home' style={{paddingBottom:'50px'}}>
-                    <HomeHeader cityName="广州"></HomeHeader>
+                    <HomeHeader cityName={localStore.getItem(CITYNAME)}></HomeHeader>
                     <WhiteSpace size="lg"/>
                     <Carousel></Carousel>
                     <WhiteSpace size="lg"/>
@@ -43,19 +46,18 @@ class App extends React.Component {
 }
 
 // -------------------redux react 绑定--------------------
-// function mapStateToProps(state) {
-//     return {
-//         userinfo : state.userinfo
-//     }
-// }
+function mapStateToProps(state) {
+    return {
+        userinfo : state.userinfo
+    }
+}
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch),
-//     }
-// }
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(App)
-export default App
+function mapDispatchToProps(dispatch) {
+    return {
+        userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch),
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)

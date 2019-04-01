@@ -1,0 +1,125 @@
+@import '@/styles/mixin.scss';
+.g-user{
+  background-color: #eee;
+.user-header{
+  position: relative;
+  background: linear-gradient(to right, #35e3e3, #00c4ff);
+  height: 170px;
+  span{
+    position: relative;
+  }
+  .iconmeg{
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    font-size: 24px;
+  }
+  .iconuser{
+    margin: 12px 0 0 16px;
+    display: inline-block;
+    font-size: 20px;
+  }
+  .am-badge{
+    position: absolute;
+    top: -10px;
+    left: 10px;
+  }
+  .avatar{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
+  .userinfo{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    color: #fff;
+    
+  }
+  .name{
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .level{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 8px;
+    font-size: 12px;
+    border: 1px #fff solid;
+    border-radius: 10px;  
+  }
+  img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+  .menu{
+    display: flex;
+    width: 90%;
+    margin: -40px auto 0;
+    position: relative;
+    z-index: 1;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    background-color:#fff;
+    border-radius: 14px;
+    img{
+      width: 40px;
+      height: 40px;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    .item{
+      text-align: center;
+    }
+  }
+  .menu-list{
+    .iconfont{
+      font-size: 25px; 
+    }
+  }
+}
+.m-collection{
+  .am-navbar{
+    border-bottom: 1px #aaa solid;
+  }
+  .collection-list{
+    padding: 0 10px;
+    background: #fff;
+  }
+  .item{
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    height: 80px;
+    position: relative;
+    .iconfont{
+      margin: 0 18px; 
+      display: none;
+    }
+    img{
+      margin-right: 10px; 
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+    }
+    .info{
+      height: 100%;
+      position: relative;
+    }
+    .des{
+      line-height: 23px;
+    }
+    .author{
+      font-size: 12px;
+      color: #ccc;
+      position: absolute;
+      bottom: 5px;
+    }
+  }
+}

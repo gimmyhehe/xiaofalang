@@ -10,7 +10,6 @@ class CommentArticle extends React.Component{
   render(){
     return (
       <div className='m-comment-article'>
-        <Header title='内容详情'></Header>
         <div className='g-container'>
           <div className='comment-user'>
             <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />

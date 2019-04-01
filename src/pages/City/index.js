@@ -39,7 +39,7 @@ class City extends React.Component {
         localStore.setItem(CITYNAME, newCity)
         console.log(this.props.userinfo.cityName)
         // 跳转页面
-        // this.props.history.push('/')
+        this.props.history.push('/')
     }
 }
 

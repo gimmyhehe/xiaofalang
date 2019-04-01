@@ -26,14 +26,6 @@ module.exports = {
             mumber: '106'
         },
         {
-            img: '/static/imgs/home/138012-20161016201700186-1351787273.png',
-            title: '婚纱摄影',
-            subTitle: '免费试穿，拍照留念',
-            price: '2899',
-            distance: '160',
-            mumber: '58'
-        },
-        {
             img: '/static/imgs/home/138012-20161016201708124-1116595594.png',
             title: '麻辣串串烧',
             subTitle: '双人免费套餐等你抢购',
