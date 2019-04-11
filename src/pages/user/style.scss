@@ -123,3 +123,26 @@
     }
   }
 }
+
+.m-about{
+  background: #fff;
+  min-height: 100vh;
+  img{
+    width: rem(120px);
+    display: block;
+    margin: rem(30px) auto;
+  }
+  h3{
+    font-size: rem(20px);
+    font-weight: 900;
+    text-align: center;
+  }
+  p{
+    text-align: center;
+    padding: rem(10px);
+  }
+  .version{
+    font-size: rem(12px);
+    color: #ccc;
+  }
+}

@@ -1,7 +1,10 @@
 import React from 'react'
 import {  Route, Switch  } from "react-router-dom";
 import User from '@/pages/user/index'
-import Profile from '@/pages/user/profile'
+import Profile from './subpages/Profile'
+import Discount from './subpages/Discount'
+import Member from './subpages/Member'
+import About from './subpages/About'
 import Collection from '@/pages/user/Collection'
 class UserLayout extends React.Component {
     render() {
@@ -9,6 +12,9 @@ class UserLayout extends React.Component {
             <Switch>
               <Route path='/user' exact component={User}/>
               <Route path='/user/profile' exact component={Profile}/>
+              <Route path='/user/discount' exact component={Discount}/>
+              <Route path='/user/member' exact component={Member}/>
+              <Route path='/user/about' exact component={About}/>
               <Route path='/user/collection' exact component={Collection}/>
             </Switch>
         )

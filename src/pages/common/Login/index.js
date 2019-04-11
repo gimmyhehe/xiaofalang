@@ -56,7 +56,7 @@ class Login extends React.Component {
         return (
         <div className='g-login'>
           <Header title='登录'/>
-          <img className='logo' src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt=''/>
+          <img className='logo' src="/static/imgs/logo.jpg" alt=''/>
           <form className="g-form-line">
           <List
             renderFooter={() => getFieldError('username') && getFieldError('username').join(',')}

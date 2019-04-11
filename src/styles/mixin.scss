@@ -1,3 +1,6 @@
+@function rem($px){
+  @return $px/12px *1rem; 
+}
 @mixin bis($url) { 
 	background-image: url($url);
 	background-repeat: no-repeat;

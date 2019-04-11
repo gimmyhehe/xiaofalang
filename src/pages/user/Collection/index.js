@@ -4,13 +4,16 @@ class Collection extends React.Component {
   testClick(){
     alert(134)
   }
+  back(){
+   window.history.back()
+  }
     render() {
         return (
           <div className='m-collection'>
             <NavBar
             mode="light"
             icon={<Icon type="left" />}
-            onLeftClick={() => console.log('onLeftClick')}
+            onLeftClick={this.back.bind(this)}
             rightContent={<div onClick={this.testClick}>编辑</div>}
             >我的收藏</NavBar>
             <ul className='collection-list'>

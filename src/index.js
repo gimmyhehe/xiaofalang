@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/common.less';
+import './styles/common.scss';
 import './styles/style.scss';
 import * as serviceWorker from './serviceWorker';
 import { createHashHistory } from 'history';

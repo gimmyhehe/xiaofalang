@@ -10,14 +10,10 @@ class ArticleFooter extends React.Component{
     return (
       <div className='m-article-footer'>
         <Badge text={10} overflowCount={9}>
-          <span className='iconfont iconuser'></span>
+          <span className='iconfont iconlike'></span>
         </Badge>
-        <Badge text={10} overflowCount={9}>
-          <span className='iconfont iconuser'></span>
-        </Badge>
-        <Badge text={10} overflowCount={9}>
-          <span className='iconfont iconuser'></span>
-        </Badge>
+          <span className='iconfont iconstar'></span>
+          <span className='iconfont iconarticle'></span>
       </div>
     )
   }

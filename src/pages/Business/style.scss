@@ -1,0 +1,122 @@
+@import '@/styles/mixin.scss';
+.m-business{
+  background: #eee;
+  .score{
+    display: inline-block;
+    width: 100px;
+    height: 21px;
+    background: url(/static/imgs/business/score.png) center no-repeat;
+    background-position: 0 3px;
+    background-size: 100px auto;
+  }
+  .info{
+    img{
+      width: 100%;
+    }
+  }
+  .cost-box{
+    padding: 10px 16px;
+    background-color: #fff;
+  }
+  .buy-box{
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    margin-top: 0rem;
+    height: 2.5rem;
+    -webkit-box-pack: justify;
+    background-size: auto .5rem;
+    line-height: 2.5rem;
+    margin-bottom: 15px;
+    .price{
+      color: #06c1ae;
+    }
+    .sum{
+      font-size: 2rem;
+      margin-right: 0.3rem;
+    }
+    .past{
+      -webkit-box-flex: 1;
+      -webkit-box-align: end;
+      display: -webkit-box;
+      margin-bottom: 0.5rem;
+      line-height: .6rem;
+    }
+    .last{
+      padding-top: 0.4rem;
+      margin-right: .5rem;
+    }
+    .buy-btn{
+      height: 2rem;
+      color: #fff;
+      background-color: #f90;
+      border-radius: 0.5rem;
+      text-align: center;
+      line-height: 2rem;
+      display: block;
+      font-size: 1rem;
+      padding: 0 .5rem;
+    }
+  }
+  .detail-info{
+    .sale-info{
+      margin-top: 10px;
+    }
+    .sale-info span{
+      height: 21px;
+      display: inline-block;
+      line-height: 21px;
+    }
+    .shop-name{
+      font-size: 18px;
+      font-weight: bold;
+    }
+ 
+    .location{
+      margin-top: 10px; 
+    }
+  }
+  .content-box{
+    background-color: #fff;
+    margin-top: 10px;
+    .content{
+      padding: 10px;
+    }
+    .title{
+      border-bottom:1px solid #ddd;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 10px;
+    }
+  }
+  .other-meallist{
+    padding: 10px;
+    .meal-name{
+      margin-bottom: 10px;
+    }
+    .new-price{
+      color: #06c1ae;
+      font-size: 20px;
+    }
+    .old-price{
+      color: #ccc;
+    }
+    li{
+      border-bottom: 1px solid #ccc;
+      padding: 8px 3px;
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+  .comment-list{
+    .item{
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+    }
+    .avater{
+      @include cimg(36px);
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Card,Badge,WingBlank,ListView} from 'antd-mobile'
-
+import Business from '@/pages/Business'
+import PopModal from '@/components/PopModal'
 const NUM_SECTIONS = 2;
 const NUM_ROWS_PER_SECTION = 2;
 let pageIndex = 0;
@@ -48,7 +49,10 @@ class BusinessList extends React.Component{
   }
 
   
-
+  showDetail(){
+    console.log(this.child)
+    this.child.show()
+  }
     componentDidMount() {
       // you can scroll to the specified position
       // setTimeout(() => this.lv.scrollTo(0, 120), 800);
@@ -88,7 +92,7 @@ class BusinessList extends React.Component{
     const row = (rowData, sectionID, rowID) => {
       return(
         <WingBlank size="lg">
-            <Card className='item'>
+            <Card className='item' onClick={this.showDetail.bind(this)}>
               <Card.Header
                 title={rowData}
                 thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
@@ -125,7 +129,7 @@ class BusinessList extends React.Component{
           onEndReachedThreshold={10}
         />
         </div>
-          
+        <PopModal title='商家详情页' ref={(ref)=>{this.child = ref}} ><Business /></PopModal>
       </div>
     )
   }
