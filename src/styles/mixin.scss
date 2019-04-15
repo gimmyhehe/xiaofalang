@@ -1,6 +1,18 @@
+@import './variables.scss';
 @function rem($px){
   @return $px/12px *1rem; 
 }
+$g-muted-color:                       #C3C3C3;
+$g-primary-color:                     #DBB769;
+$g-success-color:                     #559924;
+$g-warning-color:                     #faa05a;
+$g-danger-color:                      #E74341;
+$g-price-color: #06c1ae;
+$g-none-color: #f5f5f9;
+
+$btn-primary-color: #f90;
+$btn-theme-color: #f90;
+
 @mixin bis($url) { 
 	background-image: url($url);
 	background-repeat: no-repeat;

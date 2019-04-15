@@ -1,4 +1,3 @@
-
 //全局的表单样式（只有border-bottom）
 .g-form-line{
   width: 90%;
@@ -54,7 +53,12 @@
   bottom: 0;
   width: 100%;
   z-index: 99;
-
+  .am-tab-bar-tab-icon{
+    img{
+      width: 22px;
+      height: 22px;
+    }
+  }
 }
 .g-container{
   background: #fff;
@@ -71,4 +75,9 @@
   opacity: 0;
   transition: all .6s ease;
   padding-top: 45px;
+}
+.g-list{
+  .am-input-control input{
+    text-align: right;
+  }
 }

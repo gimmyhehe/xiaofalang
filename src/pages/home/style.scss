@@ -3,9 +3,9 @@
   background-color: #fff;
 
   h2 {
-      font-size: 16px;
+      font-size: rem(16px);
       font-weight: 700;
-      padding: 10px 15px;
+      padding: rem(10px) rem(15px);
       border-bottom: 1px solid #f1f1f1;
   }
 
@@ -15,7 +15,7 @@
 
   .ad-item {
       width: 33.3%;
-      height: 140px;
+      height: rem(140px);
       img {
           width: 100%;
           height: 100%;
@@ -25,18 +25,18 @@
 .m-classify{
   h4{
     text-align: center;
-    line-height: 36px;
+    line-height: rem(36px);
   }
   .am-flexbox.am-flexbox-align-center{
-    border-radius: 10px;
+    border-radius: rem(10px);
   }
   .am-flexbox-item.item{
-    height: 110px;
+    height: rem(110px);
     flex-grow: 1;
     text-align: center;
     img{
       max-width: 90%;
-      max-height: 60px;
+      max-height: rem(60px);
     }
   }
   .am-flexbox-item.item-2{
@@ -57,9 +57,31 @@
   }
 }
 .business-list{
-  padding:20px 0 ;
+  padding:rem(20px) 0 ;
   .item{
-    margin-top:20px;
+    margin-top:rem(20px);
+    position: relative;
     @include shadowBottom;
+    .am-card-header{
+      img{width: rem(30px);}
+    }
+    .am-badge-hot .am-badge-text{
+      background-color: #f90; 
+    }
+    .am-card-body img{
+      width: rem(40px);
+      height: rem(40px);
+      border-radius: rem(10px);
+    }
+    .business-des{
+      display: inline-block;
+      position: absolute;
+      left: rem(70px);
+      right: rem(10px);
+      line-height: rem(18px);
+    }
+    .am-card-footer{
+      margin-top: rem(10px);
+    }
   }
 }

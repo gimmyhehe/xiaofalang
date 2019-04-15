@@ -98,6 +98,7 @@
     padding: 10px 0;
     height: 80px;
     position: relative;
+    margin-bottom: rem(10px);
     .iconfont{
       margin: 0 18px; 
       display: none;
@@ -144,5 +145,73 @@
   .version{
     font-size: rem(12px);
     color: #ccc;
+  }
+}
+
+.discount-list{
+  padding: rem(16px);
+  .item{
+    background-color: #fff; 
+    border-radius: rem(4px);
+    position: relative;
+    margin-bottom: rem(16px);
+    @include shadowBottom();
+    &::after,&::before{
+      content: '';
+      width: rem(20px);
+      height: rem(20px);
+      position: absolute;
+      display: block;
+      background-color: $g-none-color;
+      
+      border-radius: 50%;
+      top: rem(100px);
+    }
+    &::before{
+      border-right: 1px solid #ccc;
+      left: 0;
+      transform: translate(-50%,-50%);
+    }
+    &::after{
+      border-left: 1px solid #ccc;
+      right: 0;
+      transform: translate(50%,-50%);
+    }
+  }
+  .g-mycard{
+    padding: rem(20px) rem(14px);
+    height: rem(60px);
+    border-bottom: 1px dashed #ccc;
+  }
+  .discount{
+    color: $g-price-color;
+    width: rem(70px);
+    h3{
+      font-size: rem(22px);
+      text-align: center;
+    }
+    p{
+      text-align: center;
+      font-size: rem(12px);
+    }
+  }
+  .info{
+    .vid{
+      font-size: rem(12px);
+    }
+  }
+  .use-btn{
+    height: rem(26px);
+    text-align: center;
+    line-height: rem(26px);
+    width: rem(70px);
+    background-color: $btn-primary-color;
+    font-size: rem(13px);
+    color: #fff;
+    border-radius: rem(30px);  
+  }
+  .instruction{
+    padding: rem(5px) rem(14px);
+    background-color: #f6f6f6; 
   }
 }

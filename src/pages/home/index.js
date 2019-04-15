@@ -34,7 +34,7 @@ class App extends React.Component {
                     <WhiteSpace size="lg"/>
                     <Classify/>
                     <WhiteSpace size="lg"/>
-                    <Hot/>
+                    {/* <Hot/> */}
                     <BusinessList/>
                     <Footer/>
                 </div>

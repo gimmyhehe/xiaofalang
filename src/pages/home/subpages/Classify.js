@@ -1,14 +1,18 @@
 import React from 'react'
+import { withRouter,Link } from 'react-router-dom'
 import { Flex,WhiteSpace,WingBlank  } from 'antd-mobile';
 
-export default class Classify extends React.Component {
+class Classify extends React.Component {
+
   render(){
     return (
       <WingBlank className="m-classify">
         <Flex>
-          <Flex.Item className="item item-2" id="item1">
-          <h4>发型设计</h4>
-          <img src="/static/imgs/index/1.png" alt="" />
+          <Flex.Item  className="item item-2" id="item1">
+          <Link to={{pathname:'/find',type:'comment'}}>
+            <h4>发型设计</h4>
+            <img src="/static/imgs/index/1.png" alt="" />
+          </Link>
           </Flex.Item>
           <Flex.Item className="item item-1" id="item2">
           <h4>头发护理</h4>
@@ -30,3 +34,4 @@ export default class Classify extends React.Component {
     )
   }
 }
+export default withRouter(Classify)

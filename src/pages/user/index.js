@@ -89,7 +89,7 @@ class User extends React.Component{
           <Item
             thumb={<i className="iconfont iconorder"></i>}
             arrow="horizontal"
-            onClick={this.handleJump.bind(this,'/user/collection')}
+            onClick={this.handleJump.bind(this,'/user/order')}
           >我的订单</Item>
           <Item
             thumb={<i className="iconfont iconuser"></i>}

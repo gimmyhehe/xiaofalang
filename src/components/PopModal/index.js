@@ -6,7 +6,7 @@ import { NavBar, Icon } from 'antd-mobile';
     return(
       <div className='g-pop-modal' ref="pop" style={{left:'100%'}}>
         <NavBar
-          style={{position:'fixed',top:'0',width:'100%',zIndex:'99'}}
+          style={{position:'fixed',top:'0',width:'100%',zIndex:'99',borderBottom:'#ccc 1px solid'}}
           mode="light"
           icon={<Icon type="left" />}
           onLeftClick={this.backToPreviousPage.bind(this)}>
@@ -18,6 +18,9 @@ import { NavBar, Icon } from 'antd-mobile';
   }
   backToPreviousPage(){
     this.refs.pop.style ='left:100%;opacity:0;'
+  }
+  close(){
+    this.backToPreviousPage()
   }
   show(){
     this.refs.pop.style ='left:0%;opacity:1;'

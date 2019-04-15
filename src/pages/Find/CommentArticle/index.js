@@ -12,54 +12,53 @@ class CommentArticle extends React.Component{
       <div className='m-comment-article'>
         <div className='g-container'>
           <div className='comment-user'>
-            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
+            <img src="/static/imgs/find/1.png" alt='' />
             <div className='info'>
               <div>
                 <span>gimmyhehe</span>
                 <span className='lv'>lv3</span>
               </div>
-              <div>time</div>
+              <div>2019-01-01</div>
             </div>
             <div>评分：8</div>
           </div>
           <div className='img-container'>
-          <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
-          <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
-          <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
-          <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />
+          <img src="/static/imgs/find/1.png" alt='' />
+          <img src="/static/imgs/find/1.png" alt='' />
+          <img src="/static/imgs/find/1.png" alt='' />
+          <img src="/static/imgs/find/1.png" alt='' />
           </div>
           <p className='comment'>
-            这里是评论内容这里是评论内容这里是评论内容这里是评论内
-            容这里是评论内容这里是评论内容这里是评论内容这里是评论内容这里是评
-            论内容这里是评论内容这里是评论内容这里是评论内容这里是评论内容这里是
-            评论内容这里是评论内容这里是评论内容这里是评论内容
+            文章内容文章内容文章内容文章内容文章内容文章内容
+            内容文章内容文章内容文章内容文章内容文章内容文章内
+            容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
           </p>
           <div className='business'>
-            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' />             
+            <img src="/static/imgs/find/1.png" alt='' />             
             <div className='info'>
-              <div className='name'>店名</div>
-              <div className='score'>评分：平均：￥100</div>
-              <div className='project'>烫卷</div>
+              <div className='name'>店名:盛世美颜店</div>
+              <div className='score'>评分:9.6   平均：￥100</div>
+              <div className='project'>套餐:烫卷</div>
             </div>
-            <div className='star'><span className='iconfont iconuser'></span>10</div>
+            <div className='star'><span className='iconfont iconstar'></span>10</div>
           </div>
           <div className='view'>浏览3.5万</div>
           <div className='like'>
             <div className='like-num'>
-              <div className='iconfont iconuser'></div>
+              <div className='iconfont iconlike'></div>
               8
             </div>
             <div className='like-avatar'>
-            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' /> 
-            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' /> 
-            <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' /> 
+            <img src="/static/imgs/find/1.png" alt='' /> 
+            <img src="/static/imgs/find/1.png" alt='' /> 
+            <img src="/static/imgs/find/1.png" alt='' /> 
             </div>
           </div>
           <div className='comment-box'>
             <div className='comment-box-header'><span>评论</span>(100)</div>
             <ul className='comment-list'>
               <li className='item'>
-                 <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' /> 
+                 <img src="/static/imgs/find/1.png" alt='' /> 
                  <div className='content clearfix'>
                   <div className='info'>
                     <span className='name'>giyyme</span>
@@ -71,7 +70,7 @@ class CommentArticle extends React.Component{
                  </div>
               </li>
               <li className='item'>
-                 <img src="https://gitlab.shockwest.com/uploads/-/system/user/avatar/25/avatar.png" alt='' /> 
+                 <img src="/static/imgs/find/1.png" alt='' /> 
                  <div className='content clearfix'>
                   <div className='info'>
                     <span className='name'>giyyme</span>

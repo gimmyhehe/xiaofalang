@@ -1,11 +1,19 @@
 import React from 'react'
 import './style.scss'
+import PopModal from '@/components/PopModal'
+import CreateOrder from './CreateOrder'
 class Business extends React.Component {
+  createOrder(){
+    this.child.show()
+  }
+  closeModal(){
+    this.child.close()
+  }
     render() {
         return (
             <div className="m-business" >
               <div className='info'>
-                <img  src="https://p1.meituan.net/dpdeal/e6f7924201d0e8d8542aade37d3a9a6754650.jpg%40450w_280h_1e_1c_1l%7Cwatermark%3D0"/>
+                <img  src="https://p1.meituan.net/dpdeal/e6f7924201d0e8d8542aade37d3a9a6754650.jpg"/>
                 <div  className="cost-box">
                   <div  className="buy-box">
                     <div  className="price">¥</div> 
@@ -14,9 +22,9 @@ class Business extends React.Component {
                       <div  className="t"><span  className="o-price">门市价¥128</span></div>
                     </div> 
                     <div  className="last">
-                      <a  className="buy-btn">
+                      <span  className="buy-btn" onClick={this.createOrder.bind(this)}>
                         立即预约
-                      </a>
+                      </span>
                     </div>
                   </div>
                   <div className='detail-info'>
@@ -43,7 +51,7 @@ class Business extends React.Component {
                   <div className='grow-item'>
                     <div className='meal-name'>施华蔻奢华套装/染/拉3选1套餐</div>
                     <span className='new-price'>￥39</span>
-                    <sapn className='old-price'>￥100</sapn>
+                    <span className='old-price'>￥100</span>
                   </div>
                   <span>已售100</span>
                 </li>
@@ -51,7 +59,7 @@ class Business extends React.Component {
                   <div className='grow-item'>
                     <div className='meal-name'>施华蔻奢华套装/染/拉3选1套餐</div>
                     <span className='new-price'>￥39</span>
-                    <sapn className='old-price'>￥100</sapn>
+                    <span className='old-price'>￥100</span>
                   </div>
                   <span>已售100</span>
                 </li>
@@ -59,7 +67,7 @@ class Business extends React.Component {
                   <div className='grow-item'>
                     <div className='meal-name'>施华蔻奢华套装/染/拉3选1套餐</div>
                     <span className='new-price'>￥39</span>
-                    <sapn className='old-price'>￥100</sapn>
+                    <span className='old-price'>￥100</span>
                   </div>
                   <span>已售100</span>
                 </li>
@@ -109,6 +117,7 @@ class Business extends React.Component {
                   </li>
                 </ul>
               </div>
+              <PopModal title='预约'  ref={(ref)=>{this.child = ref}} ><CreateOrder close={this.closeModal.bind(this)}/></PopModal>
             </div>
         )
     }

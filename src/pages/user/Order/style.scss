@@ -1,0 +1,48 @@
+@import '@/styles/mixin.scss';
+.order-list{
+  padding: rem(10px);
+  .item{
+    background-color: #fff; 
+    padding: rem(6px) rem(16px) rem(45px);
+    margin-bottom: rem(10px); 
+    position: relative;
+    border-radius:rem(10px);
+  }
+  .item-header{
+    padding-bottom:rem(10px);
+    border-bottom:#ccc 1px solid;
+    height: rem(40px);
+    line-height: rem(40px);
+    position: relative;
+    img{
+      @include cimg(30px);
+      vertical-align: middle;
+      margin-right: rem(10px);
+    }
+    .status{
+      position: absolute;
+      right: rem(10px);
+    }
+  }
+  .order-info{
+    margin-top: rem(10px);   
+    img{
+      width: rem(40px);
+      height: rem(40px);
+      border-radius: rem(4px);
+      vertical-align: top;
+    }
+    .info-right{
+      display: inline-block;
+      margin-left: rem(15px);
+      line-height: rem(18px);
+    }
+  }
+  .operation{
+    position: absolute;
+    right: rem(10px);
+    padding: 6px 8px;
+    border: #ccc 1px solid;
+    border-radius: 4px;
+  }
+}
