@@ -80,6 +80,11 @@ html {
 .float-right {
 	float: right;
 }
+.ellipsis{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
 .clearfix:after {
 	display: table;
 	content: '';

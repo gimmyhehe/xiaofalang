@@ -5,6 +5,7 @@ class Member extends React.Component{
     return (
       <div>
         <Header title="会员中心"></Header>
+        <div className='g-coming-soon'></div>
       </div>
     )
   }

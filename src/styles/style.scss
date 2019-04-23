@@ -1,3 +1,4 @@
+@import './mixin.scss';
 //全局的表单样式（只有border-bottom）
 .g-form-line{
   width: 90%;
@@ -79,5 +80,38 @@
 .g-list{
   .am-input-control input{
     text-align: right;
+  }
+  .am-list-item .am-list-line .am-list-extra{
+    flex-basis: 60%;
+  }
+}
+.g-coming-soon{
+  background: url(/static/imgs/comingsoon.jpg);
+  width: 100%;
+  position: fixed;
+  top: 45px;
+  bottom: 0;
+  background-position: center;
+}
+.g-btn-bottom{
+    background-color: #ddd;
+    height: rem(60px);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    .am-button{
+      width: 86%;
+      display: block;
+      margin: 0 auto;
+      height: rem(40px);
+      margin-top: rem(10px);
+      line-height: rem(40px);
+    }
+}
+.upload-single-img{
+  position: relative;
+  .am-flexbox-item{
+    position: absolute;
+    right: 0;
   }
 }

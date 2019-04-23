@@ -2,7 +2,9 @@ import React from 'react'
 import {Badge, List,Modal,Button,WhiteSpace} from 'antd-mobile'
 import { Link,withRouter } from 'react-router-dom'
 import { removeToken } from '@/utils/auth'
+import { fillImg } from '@/utils/tools'
 import store from '@/store'
+import { connect } from 'react-redux'
 import './style.scss'
 import Footer from '@/components/common/footer'
 const Item = List.Item;
@@ -63,9 +65,9 @@ class User extends React.Component{
             </div>
           </div> :
           <div className='avatar'>
-            <img src="/static/imgs/find/3.png" alt='' />
+            <img src={this.props.userinfo.img && fillImg(this.props.userinfo.img)} alt='' />
             <div className='userinfo'>
-              <div className='name'>Gimmyh呵呵</div>
+              <div className='name'>{this.props.userinfo.userName}</div>
               <div className='level'>等级LV2</div>
             </div>
           </div>
@@ -80,7 +82,7 @@ class User extends React.Component{
             <img src="/static/imgs/icon/quan.png" alt=''/>
             优惠券
           </div>
-          <div className='item' onClick={this.handleJump.bind(this,'/user/collection')}>
+          <div className='item' onClick={this.handleJump.bind(this,'/user/publisharticle')}>
             <img src="/static/imgs/icon/article.png" alt=''/>
             发表文章
           </div>
@@ -101,7 +103,7 @@ class User extends React.Component{
           <Item
             thumb={<i className="iconfont iconarticle"></i>}
             arrow="horizontal"
-            onClick={this.handleJump.bind(this,'/user/collection')}
+            onClick={this.handleJump.bind(this,'/user/article')}
           >我的文章</Item>
           <Item
             thumb={<i className="iconfont iconmember"></i>}
@@ -113,7 +115,7 @@ class User extends React.Component{
           <Item
             thumb={<i className="iconfont iconstar"></i>}
             arrow="horizontal"
-            onClick={this.handleJump.bind(this,'/user/collection')}
+            onClick={this.handleJump.bind(this,'/user/follow')}
           >我的关注</Item>
           <Item
             thumb={<i className="iconfont iconinfo"></i>}
@@ -133,4 +135,13 @@ class User extends React.Component{
     )
   }
 }
-export default withRouter(User)
+
+function mapStateToProps(state) {
+  console.log('userpage props is',state)
+    return {
+        userinfo: state.userinfo
+    }
+}
+export default connect(
+  mapStateToProps,
+)(withRouter(User))

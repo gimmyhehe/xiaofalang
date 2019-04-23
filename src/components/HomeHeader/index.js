@@ -22,9 +22,9 @@ class HomeHeader extends React.Component {
                 {
                     store.getState().userinfo.token?
                     <div className='user-info'>
-                        <Link to="user">
-                            <img src="/static/imgs/default.png" alt="" />
-                            gimmy
+                        <Link to="user" className='ellipsis'>
+                            <img src={this.props.userinfo.img} alt="" />
+                            {this.props.userinfo.userName}
                         </Link>
                     </div>
                     :

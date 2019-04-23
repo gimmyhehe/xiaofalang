@@ -1,0 +1,38 @@
+@import '@/styles/mixin.scss';
+.g-reigster{
+    background: url(/static/imgs/signup.png) no-repeat fixed top;
+    background-size: cover;
+    height: 100vh;
+    .avatar-uploader{
+      margin: 0 auto;
+      width: rem(100px);
+    }
+    .avatar-uploader .el-upload {
+      border: 1px dashed #d9d9d9;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      
+    }
+    .avatar-uploader .el-upload:hover {
+      border-color: #409EFF;
+      width: 100px;
+      margin: 0 auto;
+    }
+    .avatar-uploader-icon {
+      font-size: rem(18px);
+      color: #8c939d;
+      width: rem(100px);
+      height: rem(100px);
+      line-height: rem(100px);
+      text-align: center;
+      margin: 0 auto;
+    }
+    .avatar {
+      width: rem(100px);
+      height: rem(100px);
+      display: block;
+      margin: 0 auto;
+    }
+}

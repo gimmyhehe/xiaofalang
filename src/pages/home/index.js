@@ -28,7 +28,7 @@ class App extends React.Component {
                 {
                 this.state.initDone ?
                 <div className='m-home' style={{paddingBottom:'50px'}}>
-                    <HomeHeader cityName={localStore.getItem(CITYNAME)}></HomeHeader>
+                    <HomeHeader cityName={localStore.getItem(CITYNAME)} userinfo={this.props.userinfo}></HomeHeader>
                     <WhiteSpace size="lg"/>
                     <Carousel></Carousel>
                     <WhiteSpace size="lg"/>

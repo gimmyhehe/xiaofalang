@@ -12,6 +12,12 @@ var router = new Router()
 //     this.body = 'test data'
 // });
 app.use(bodyparser());
+app.use(async (ctx, next) => {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set('Access-Control-Allow-Methods', 'PUT,DELETE,POST,GET');
+    ctx.set('Access-Control-Allow-Credentials', true);
+    await next();
+  });
 router.get('/', function (ctx, next) {
     ctx.body = 'hello koa !'
   });
@@ -27,7 +33,14 @@ var homeListData = require('./home/list.js')
 router.get('/api/test',function (ctx,next){
     ctx.body = "this is a test api!"
 })
-
+router.post('/post',function(ctx,next){
+    const params = ctx.request.body
+    console.log(params)
+    ctx.body = {
+        status: 0,
+        msg: 'ok'
+    }
+})
 router.get('/api/homelist/:city/:page', function (ctx,next) {
     // 参数
     const params = ctx.params

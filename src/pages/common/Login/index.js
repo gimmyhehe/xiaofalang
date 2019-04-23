@@ -1,10 +1,13 @@
 import React from 'react'
-import './login.less'
+import './login.scss'
 import Header from '@/components/common/header'
-import { login } from '@/api/user'
+import { login,getUserData } from '@/api/user'
 import { List, InputItem, WhiteSpace , Button,Modal } from 'antd-mobile';
 import { Link } from 'react-router-dom'
 import { createForm } from 'rc-form';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as userInfoActionsFromOtherFile from '@/store/userinfo/action'
 const Item = List.Item;
 const alert = Modal.alert
 class Login extends React.Component {
@@ -28,8 +31,11 @@ class Login extends React.Component {
           let data = res.data
           console.log(res)
           if(data.status==0){
+            const userinfo = this.props.userinfo
+            userinfo.userName = newP['user_name']
+            userinfo.img = data['user_pic']
+            this.props.userInfoActions.login(userinfo)
             this.props.history.push('/user')
-            
           }else{
             alert('错误提示', data.msg, [
               { text: '确定', onPress: () => console.log('cancel') },
@@ -85,9 +91,9 @@ class Login extends React.Component {
               })} clear placeholder="请输入密码" type="password">
               密码
             </InputItem>
-            <InputItem   clear placeholder="验证码" type="text">
+            {/* <InputItem   clear placeholder="验证码" type="text">
               验证码
-            </InputItem>
+            </InputItem> */}
           </List>
             <Button type="primary"   onClick={this.onSubmit}>登录</Button>
             <WhiteSpace size='lg'></WhiteSpace>
@@ -97,4 +103,20 @@ class Login extends React.Component {
         )
     }
 }
-export default createForm()(Login)
+
+function mapStateToProps(state) {
+  console.log(111,state)
+    return {
+        userinfo: state.userinfo
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch)
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(createForm()(Login))

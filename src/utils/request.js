@@ -2,11 +2,19 @@ import axios from 'axios'
 import qs from 'qs'
 import store from '@/store'
 import { update } from '@/store/userinfo/action'
-import { setToken } from '@/utils/auth'
+import { setToken,setUserInfo } from '@/utils/auth'
+import sessionStore from '@/utils/sessionStore'
 import { Modal } from 'antd-mobile'
 const alert = Modal.alert
 const CancelToken = axios.CancelToken
 var cancel;
+function paramsToFormData(params){
+    let formData = new FormData()
+    for(let key in params){
+        formData.append(key,params[key])
+    }
+    return formData
+}
 var service=axios.create({
     baseURL:process.env.BASE_API,
     timeout:5000
@@ -43,14 +51,19 @@ service.interceptors.response.use(function(response){
   //     return response.data
   //   }
   // },
+    console.log(response)
     const res = response
-    let token = res.headers.authorization
+    let token = res.headers['user_name']
+    let userId = res.headers['user_id']
     if (token) {
         let userinfo = store.getState().userinfo
         userinfo.token = token
+
+        store.dispatch(update(userinfo))
       // 如果 header 中存在 token，现在只从response更新token
-      store.dispatch(update(userinfo))
-      setToken({token})
+        setUserInfo('20190402003221259611')
+        setToken({token})
+        sessionStore.setItem('userId',userId)
     }
     // Token-Refresh-At: 1544499859
     if (res.status !== 200) {
@@ -69,17 +82,6 @@ service.interceptors.response.use(function(response){
 )
 //get请求
 export  function get(url,param){
-    //promise示例
-    //   axios.post('/user', {
-    //     firstName: 'Fred',
-    //     lastName: 'Flintstone'
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   }); 
     return new Promise((resolve,reject)=>{
         service({
             method:'get',
@@ -97,15 +99,17 @@ export  function get(url,param){
     })
 }
 //post请求
-export  function post(url,param){
+export  function post(url,params){
     return new Promise((resolve,reject)=>{
         service({
             method:'post',
             url,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                //'Content-Type': 'application/x-www-form-urlencoded', 
+                "Content-Type": "multipart/form-data"
               },
-            data:qs.stringify(param),
+            // data:qs.stringify(params), 当Content-Type为application/x-www-form-urlencoded需要转换参数
+            data:paramsToFormData(params),
             cancelToken:new CancelToken(c=>{
                 cancel=c
             })

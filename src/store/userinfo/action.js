@@ -6,6 +6,12 @@ export function update(data) {
         data
     }
 }
+export function login(data){
+    return {
+        type: actionTypes.LOGIN,
+        data
+    }
+}
 export function setToken(data){
     return {
         type: actionTypes.SET_TOKEN,

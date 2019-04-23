@@ -1,0 +1,15 @@
+@import '@/styles/mixin.scss';
+.g-login{
+  background: url(/static/imgs/login_bg.jpg) no-repeat fixed top;
+  height: 100vh;
+  background-size: cover;
+  .logo{
+    width: rem(200px);
+    height: rem(60px);
+    display: block;
+    margin: rem(50px) auto;
+  }
+  .am-list-item{
+    background-color: transparent;
+  }
+}
