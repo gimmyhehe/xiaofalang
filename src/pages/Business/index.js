@@ -2,6 +2,7 @@ import React from 'react'
 import './style.scss'
 import PopModal from '@/components/PopModal'
 import CreateOrder from './CreateOrder'
+import Header from '@/components/common/header'
 class Business extends React.Component {
   createOrder(){
     this.child.show()
@@ -12,6 +13,7 @@ class Business extends React.Component {
     render() {
         return (
             <div className="m-business" >
+              <Header title="个人资料"></Header>
               <div className='info'>
                 <img  src="https://p1.meituan.net/dpdeal/e6f7924201d0e8d8542aade37d3a9a6754650.jpg"/>
                 <div  className="cost-box">

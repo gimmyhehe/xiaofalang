@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter,Link } from 'react-router-dom'
+import { fillImg } from '@/utils/tools'
 import { Icon } from 'antd-mobile'
 import store from '@/store'
 import './style.scss'
@@ -23,7 +24,7 @@ class HomeHeader extends React.Component {
                     store.getState().userinfo.token?
                     <div className='user-info'>
                         <Link to="user" className='ellipsis'>
-                            <img src={this.props.userinfo.img} alt="" />
+                            <img src={this.props.userinfo.img && fillImg(this.props.userinfo.img)} alt="" />
                             {this.props.userinfo.userName}
                         </Link>
                     </div>

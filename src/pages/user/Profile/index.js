@@ -1,10 +1,11 @@
 import React from 'react'
-import {WhiteSpace, List, Button, DatePicker,Picker,InputItem,ImagePicker} from 'antd-mobile'
-import { getUserData } from '@/api/user'
+import {WhiteSpace, List, Button, DatePicker,Picker, Toast} from 'antd-mobile'
+import { getUserData, modifyUser_data, modifyUser_dataHeadPic } from '@/api/user'
 import { getToken } from '@/utils/auth'
 import { formatDate } from '@/utils/tools'
 import Header from '@/components/common/header'
 import LoadingModal from '@/components/LoadingModal'
+import { fillImg } from '../../../utils/tools';
 const Item = List.Item;
 class Profile extends React.Component{
   constructor(props){
@@ -15,12 +16,10 @@ class Profile extends React.Component{
       },
       birthday: 852048000000,
       date: null,
-      gender: '男',
-      avater: [{url:'/static/imgs/logo.jpg',id:'1'}],
       userName: '',
-      gender: "男",
-      email: "123456789@qq.com",
-      phone: "123456789",
+      gender: [],
+      email: "",
+      phone: "",
       loading: true
     }
   }
@@ -42,10 +41,11 @@ class Profile extends React.Component{
       let data = res.data
       let userInfo={}
       userInfo.userName = data['user_name']
-      userInfo.gender = data['gender']
+      userInfo.gender = {label:data['gender'],value:data['gender']}
       userInfo.birthday = data['birth_date']
       userInfo.email = data['email']
       userInfo.phone = data['phone_number']
+      userInfo.avater = data['user_Pic']['user_pic_dir']
       this.setState({userInfo})
       this.setState({loading:false})
     })
@@ -70,23 +70,29 @@ class Profile extends React.Component{
 
     //读取文件过程方法
     reader.onloadstart = function (e) {
-        console.log("开始读取....");
+        // console.log("开始读取....");
     }
     reader.onprogress = function (e) {
-        console.log("正在读取中....");
+        // console.log("正在读取中....");
     }
     reader.onabort = function (e) {
-        console.log("中断读取....");
+        // console.log("中断读取....");
     }
     reader.onerror = function (e) {
-        console.log("读取异常....");
+        // console.log("读取异常....");
     }
     reader.onload = function (e) {
-        console.log("成功读取....");
-
+        // console.log("成功读取....");
         var img = document.getElementById("xmTanImg");
         img.src = e.target.result
-        //或者 img.src = this.result;  //e.target == this
+        modifyUser_dataHeadPic({fileImg:file}).then(res=>{
+          let data = res.data
+          if(data.status == 0){
+            Toast.info(data.msg, 1);
+          }else{
+            Toast.fail(data.msg, 1);
+          }
+        })
     }
 
     reader.readAsDataURL(file)
@@ -113,7 +119,7 @@ class Profile extends React.Component{
             
             <List renderHeader={() => '   '} className="my-list g-list">
               <Item extra={<div  onClick={this.testFile.bind(this)} style={{height:'100px',width:'100px',display:'inline-block'}}>
-                  <img id='xmTanImg' src='/static/imgs/default.png' alt='用户头像' style={{height:'100px',width:'100px'}} />
+                  <img id='xmTanImg' src={ userInfo.avater && fillImg(userInfo.avater) } alt='用户头像' style={{height:'100px',width:'100px'}} />
                 </div>}>头像</Item>
               <Item extra={userInfo.userName}>用户名</Item>
               <Item extra={userInfo.phone}>手机</Item>
@@ -121,7 +127,7 @@ class Profile extends React.Component{
               
               <Picker
               data={gender}
-              value={userInfo.gender}
+              value={"男"}
               cols={1}
               onChange={this.onChangeColor.bind(this)}
             >
@@ -130,7 +136,7 @@ class Profile extends React.Component{
               <DatePicker
               mode="date"
               title="请选择生日"
-              extra={formatDate(userInfo.birthday,'yyyy-MM-dd')}
+              extra={  '1997-05-25' | formatDate(userInfo.birthday,'yyyy-MM-dd')}
               value={this.state.date}
               onChange={ date => {this.setState({ date }); console.log(date.getTime()) }}
             >

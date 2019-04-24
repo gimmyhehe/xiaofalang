@@ -21,3 +21,11 @@ export function deleteCollect(params={}){
     const result = post('/api/deletecollect',params)
     return result
 }
+export function modifyUser_data(params={}){
+    const result = post('/api/modifyUser_data',params)
+    return result
+}
+export function modifyUser_dataHeadPic(params={}){
+    const result = post('/api/modifyUser_dataHeadPic',params)
+    return result
+}

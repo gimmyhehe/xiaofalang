@@ -20,7 +20,7 @@ class Classify extends React.Component {
           </Flex.Item>
         </Flex>
         <WhiteSpace />
-        <Flex>
+        {/* <Flex>
           <Flex.Item  className="item item-1" id="item3">
           <h4>优质发型师</h4>
           <img src="/static/imgs/index/3.png" alt="" />
@@ -29,7 +29,7 @@ class Classify extends React.Component {
           <h4>精选发型推荐</h4>
           <img src="/static/imgs/index/4.png" alt="" />
           </Flex.Item>
-        </Flex>
+        </Flex> */}
       </WingBlank>
     )
   }

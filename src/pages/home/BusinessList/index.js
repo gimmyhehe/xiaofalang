@@ -1,78 +1,37 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Card,Badge,WingBlank,ListView} from 'antd-mobile'
+import { fillImg } from '@/utils/tools'
+import { search_business_loca } from '@/api/business'
+import { CITYNAME } from '@/config/localStoreKey'
+import localStore from '@/utils/localStore'
 import Business from '@/pages/Business'
 import PopModal from '@/components/PopModal'
-const NUM_SECTIONS = 1;
-const NUM_ROWS_PER_SECTION = 4;
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+const NUM_ROWS = 2;
 let pageIndex = 0;
-const initData = [
-  {
-    name:'邻家发郎',
-    img:"/static/imgs/logo.jpg",
-    des:'邻家发郎，一家专业的美发机构，行业领先技术',
-    scroe: 9,
-    buyNum:100,
-  },
-  {
-    name:'三木造型',
-    img:"https://p0.meituan.net/wedding/1d2bb986c39681b4fb6065f9346a5577132734.jpg%40300w_225h_1e_1c_1l%7Cwatermark%3D1%26%26r%3D1%26p%3D9%26x%3D2%26y%3D2%26relative%3D1%26o%3D20",
-    des:'高品质、快速便捷服务',
-    scroe: 9,
-    buyNum:100,
-  },
-  {
-    name:'Hair烫染造型',
-    img:"http://p1.meituan.net/dpdeal/65a6433cb56edb124c91bced9f6dcd7476654.jpg",
-    des:'邻家发郎，一家专业的美发机构，行业领先技术',
-    scroe: 9,
-    buyNum:100,
-  },
-  {
-    name:'随意造型',
-    img:"http://p1.meituan.net/dpdeal/1c4d6b4107298bdf297d6b137bb6fc2c268219.jpg",
-    des:'随意造型随意造型随意造型',
-    scroe: 9,
-    buyNum:100,
-  },
-]
-const dataBlobs = {};
-let sectionIDs = [];
-let rowIDs = [];
+
+var initData = []
 function genData(pIndex = 0) {
-  for (let i = 0; i < NUM_SECTIONS; i++) {
-    const ii = (pIndex * NUM_SECTIONS) + i;
-    const sectionName = `Section ${ii}`;
-    sectionIDs[ii]=sectionName;
-    dataBlobs[sectionName] = sectionName;
-    rowIDs[ii] = [];
-
-    for (let jj = 0; jj < NUM_ROWS_PER_SECTION; jj++) {
-      const row = initData[jj%4];
-      rowIDs[ii].push(row);
-      dataBlobs[row] = row;
-    }
+  const dataBlob = {};
+  for (let i = 0; i < NUM_ROWS; i++) {
+    const ii = (pIndex * NUM_ROWS) + i;
+    dataBlob[`${ii}`] = initData[ii%NUM_ROWS];
   }
-  sectionIDs = [...sectionIDs];
-  rowIDs = [...rowIDs];
+  return dataBlob;
 }
-
 class BusinessList extends React.Component{
     constructor(props, context) {
         super(props, context);
-
-    const getRowData = (dataBlob, sectionID, rowID) => dataBlob[rowID];
-
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     const dataSource = new ListView.DataSource({
-      getRowData,
       rowHasChanged: (row1, row2) => row1 !== row2,
-      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
     });
 
      this.state = {
       dataSource,
       isLoading: true,
-      hasMore:true,
+      hasMore:1,
       height: document.documentElement.clientHeight * 3 / 4,
     };
   }
@@ -81,59 +40,100 @@ class BusinessList extends React.Component{
   showDetail(){
     this.child.show()
   }
-    componentDidMount() {
-      // you can scroll to the specified position
-      // setTimeout(() => this.lv.scrollTo(0, 120), 800);
-  
-      const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
-      // simulate initial Ajax
-      setTimeout(() => {
-        genData();
+  getMoreData(pIndex=0){
+    const dataBlob = {};
+    return new Promise((resolve,reject)=>{
+      this.getLocalBusiness((pIndex+1)).then(()=>{
+        console.log('afterinitData',initData)
+        for (let i = 0; i < NUM_ROWS; i++) {
+          const ii = (pIndex * NUM_ROWS) + i;
+          if(ii>=initData.length) break;
+          dataBlob[`${ii}`] = initData[ii];
+        }
+        resolve(dataBlob)
+      })
+    })
+  }
+  componentDidMount() {
+    // simulate initial Ajax
+    setTimeout(() => {
+       this.getMoreData().then(res=>{
+        pageIndex = 0
+        this.rData = res
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+          dataSource: this.state.dataSource.cloneWithRows(this.rData),
           isLoading: false,
-          height: hei,
         });
-      }, 600);
-    }
+      });
+    }, 600);
+  }
+  getLocalBusiness(pIndex){
+    return new Promise((resolve,reject)=>{
+      let params ={}
+      params['country'] = '中国'
+      params['province'] = '广东'
+      params['area'] = localStore.getItem(CITYNAME)
+      params['pageSize'] = NUM_ROWS
+      params['currPage'] = pIndex
+      search_business_loca(params).then(res=>{
+        console.log(res)
+        let data = res.data
+        initData = initData.concat(data.Result)
+        if(data.hasMore==0){
+          this.setState({hasMore:0})
+        }
+        console.log('beforeinitData',initData)
+        resolve()
+      })
+    })
 
-    onEndReached = (event) => {
-      // load new data
-      // hasMore: from backend data, indicates whether it is the last page, here is false
-      if (this.state.isLoading && !this.state.hasMore) {
-        return;
-      }
-      console.log(dataBlobs,'sectionIDs',sectionIDs, 'rowIDs',rowIDs)
-      // console.log('reach end', event);
-      this.setState({ isLoading: true });
-      setTimeout(() => {
-        genData(++pageIndex);
+
+  }
+  onEndReached = (event) => {
+    // load new data
+    // hasMore: from backend data, indicates whether it is the last page, here is false
+    if (this.state.isLoading && !this.state.hasMore) {
+      return;
+    }
+    console.log('reach end', event);
+    this.setState({ isLoading: true });
+    setTimeout(() => {
+      let moreData = this.getMoreData(++pageIndex).then(res=>{
+        this.rData = { ...this.rData, ...res };
         this.setState({
-          dataSource:  this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+          dataSource: this.state.dataSource.cloneWithRows(this.rData),
           isLoading: false,
         });
-      }, 1000);
-    }
+      })
+      
+    }, 1000);
+  }
 
 
   render(){
-    const row = (rowData, sectionID, row) => {
+
+
+    const row = (rowData, sectionID, rowId) => {
+      console.log("row",rowData,sectionID,rowId)
+      const row = rowData
       return(
-        <WingBlank size="lg" >
-            <Card className='item'  onClick={this.showDetail.bind(this)}>
+        <div key={row.id}>
+        <WingBlank size="lg">
+            <Card className='item'   onClick={this.showDetail.bind(this)}>
               <Card.Header
-                title={row.name}
+                title={row.company.company_name}
                 thumb="/static/imgs/icon/business.png"
                 extra={<span><Badge text="团" hot style={{ marginLeft: 12 }} />
                 <Badge text="惠" hot style={{ marginLeft: 12 }} /></span>}
               />
             <Card.Body>
-              <img src={row.img} alt='商家图' />
-              <div className='business-des'>{row.des}</div>
+              <img src={fillImg(row.user_Pic.user_pic_dir)} alt='商家图' />
+              <div className='business-des'>{row.company.company_intr}</div>
             </Card.Body>
-            <Card.Footer content={'平均评分：'+row.scroe} extra={<div>共有{row.buyNum}人消费</div>} />
+            <Card.Footer content={'平均评分：8'} extra={<div>共有55人消费</div>} />
             </Card>
           </WingBlank>
+          </div>
       )
     }
     
@@ -141,7 +141,7 @@ class BusinessList extends React.Component{
       <div className='g-box'>
         <h2 className='header'>附近商家</h2>
         <div className='business-list'>
-          <ListView
+          {/* <ListView
           ref={el => {this.lv = el}}
           dataSource={this.state.dataSource}
           renderFooter={
@@ -159,7 +159,28 @@ class BusinessList extends React.Component{
           scrollRenderAheadDistance={100}
           onEndReached={this.onEndReached}
           onEndReachedThreshold={10}
-        />
+        /> */}
+
+      <ListView
+        ref={el => this.lv = el}
+        dataSource={this.state.dataSource}
+        renderFooter={
+          () => (
+          <div style={{ padding: 30, 
+          textAlign: 'center' }}>
+          { this.state.hasMore==0 ? "已经到底啦，没用更多了！" :
+            this.state.isLoading ?
+          '加载中...' : '加载完成'}
+        </div>)}
+        renderRow={row}
+        className="am-list"
+        pageSize={4}
+        useBodyScroll
+        onScroll={() => { console.log('scroll'); }}
+        scrollRenderAheadDistance={500}
+        onEndReached={this.onEndReached}
+        onEndReachedThreshold={10}
+      />
         </div>
         <PopModal title='商家详情页' ref={(ref)=>{this.child = ref}} ><Business /></PopModal>
       </div>
